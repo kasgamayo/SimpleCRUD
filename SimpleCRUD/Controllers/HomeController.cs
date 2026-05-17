@@ -62,10 +62,19 @@ namespace SimpleCRUD.Controllers
         }
 
         // GET: /Home/History
-        public IActionResult History()
+        public IActionResult History(string searchString)
         {
-            var allInquiries = _context.Inquiries.ToList();
-            return View(allInquiries);
+            var inquiriesQuery = from i in _context.Inquiries
+                                 select i;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                inquiriesQuery = inquiriesQuery.Where(s => s.Name.Contains(searchString));
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            return View(inquiriesQuery.ToList());
         }
 
         // POST: /Home/Delete/5
