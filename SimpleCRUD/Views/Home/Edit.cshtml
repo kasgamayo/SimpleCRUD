@@ -1,0 +1,56 @@
+﻿@model SimpleCRUD.Models.Inquiry
+
+@{
+    ViewData["Title"] = "Update Message";
+}
+
+<section class="py-5 px-5 text-white d-flex align-items-center justify-content-center" style="background-color: #0b061f; min-height: 80vh;">
+    <div class="p-4 rounded-3 shadow" style="max-width: 600px; width: 100%; background-color: rgba(20, 10, 50, 0.4); border: 1px solid rgba(139, 92, 246, 0.3);">
+        <h2 class="mb-3" style="font-size: 1.6rem; font-weight: 600; border-left: 4px solid #8b5cf6; padding-left: 12px;">Modify Your Inquiry</h2>
+        <p class="text-muted small mb-4">Make necessary adjustments to your submitted fields below.</p>
+
+        <form action="/Home/Edit" method="post" class="d-flex flex-column gap-3">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <div>
+                <label class="text-muted small mb-1">Your Name</label>
+                <input type="text" name="Name" value="@Model.Name" class="input-bg w-100" required />
+            </div>
+
+            <div>
+                <label class="text-muted small mb-1">Your Email</label>
+                <input type="email" name="Email" value="@Model.Email" class="input-bg w-100" required />
+            </div>
+
+            <div>
+                <label class="text-muted small mb-1">Subject Title & Category</label>
+                <div class="d-flex gap-2 w-100">
+                    <input type="text" name="Title" value="@Model.Title" class="input-bg w-50" required />
+
+                    <select name="Category" class="input-bg w-50" style="color: #fff; background-color: rgba(254,254,254,0.1); border: 1px solid rgba(139,92,246,0.3); padding: 0.45rem 0.75rem; border-radius: 10px;" required>
+                        <option value="Work" selected="@(Model.Category == "Work" ? "selected" : null)" style="background-color: #0b061f;">Work</option>
+                        <option value="School" selected="@(Model.Category == "School" ? "selected" : null)" style="background-color: #0b061f;">School</option>
+                        <option value="General" selected="@(Model.Category == "General" ? "selected" : null)" style="background-color: #0b061f;">General</option>
+                        <option value="Others" selected="@(Model.Category == "Others" ? "selected" : null)" style="background-color: #0b061f;">Others</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="text-muted small mb-1">Inquiry Message</label>
+                <textarea name="Message" class="input-bg w-100" rows="5" required>@Model.Message</textarea>
+            </div>
+
+            <div class="d-flex gap-2 mt-2">
+                <a href="/Home/Details/@Model.Id" class="btn btn-outline-secondary w-50 text-decoration-none text-center" style="border-radius: 10px; padding: 10px; color: #aaa;">
+                    Cancel
+                </a>
+                <button type="submit" class="btn w-50" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(109, 40, 217, 0.4)); color: #fff; border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 10px;">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -7,21 +7,19 @@ namespace SimpleCRUD.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
-        [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
-        [EmailAddress(ErrorMessage = "Invalid email format (Example: user@example.com).")]
+        [EmailAddress(ErrorMessage = "Invalid email format.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Title is required.")]
-        [StringLength(150, ErrorMessage = "Title cannot exceed 150 characters.")]
+        [Required(ErrorMessage = "Subject Title is required.")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please select a category.")]
         public string Category { get; set; }
 
-        [Required(ErrorMessage = "Message body cannot be empty.")]
+        [Required(ErrorMessage = "Message cannot be empty.")]
         public string Message { get; set; }
     }
 }
