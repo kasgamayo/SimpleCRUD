@@ -1,0 +1,58 @@
+﻿@model SimpleCRUD.Models.Inquiry
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<h2>Contact Us</h2>
+
+<form asp-action="SubmitInquiry" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Name:</label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger" style="color: red;"></span>
+    </div>
+    <br />
+
+    <div>
+        <label>Email of Sender:</label><br />
+        <input asp-for="Email" type="email" />
+        <span asp-validation-for="Email" class="text-danger" style="color: red;"></span>
+    </div>
+    <br />
+
+    <div>
+        <label>Title of Message:</label><br />
+        <input asp-for="Title" />
+        <span asp-validation-for="Title" class="text-danger" style="color: red;"></span>
+    </div>
+    <br />
+
+    <div>
+        <label>Category:</label><br />
+        <select asp-for="Category">
+            <option value="">-- Select a Category --</option>
+            <option value="Work">Work</option>
+            <option value="School">School</option>
+            <option value="General">General</option>
+            <option value="Others">Others</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger" style="color: red;"></span>
+    </div>
+    <br />
+
+    <div>
+        <label>Inquiry Message:</label><br />
+        <textarea asp-for="Message" rows="5" cols="40"></textarea>
+        <span asp-validation-for="Message" class="text-danger" style="color: red;"></span>
+    </div>
+    <br />
+
+    <button type="submit">Submit</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
